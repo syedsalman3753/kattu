@@ -61,8 +61,7 @@ jobs:
             git tag ${{ inputs.TAG }}
             git push origin ${{ inputs.TAG }}
           else
-            echo ${{ env.GH_TOKEN }} > ./token.txt
-            gh auth login --hostname github.com --git-protocol https --with-token < ./token.txt
+            gh auth login --hostname github.com --git-protocol https 
             gh release create ${{ inputs.TAG }} ${{ env.LATEST }} --target=${{ inputs.BRANCH }}   --title "${{ inputs.TAG }}" --notes "${{ inputs.BODY }}" ${{ env.PRE_RELEASE }} ${{ env.DRAFT }}
           fi
         env:
