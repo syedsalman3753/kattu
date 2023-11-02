@@ -48,19 +48,16 @@ jobs:
         uses: actions/checkout@v3
       - name: Create a release with a tag
         run: |
-          PRE_RELEASE=''
-          if [[ ${{ inputs.PRE_RELEASE }} == 'true' ]]; then
-            PRE_RELEASE='--prerelease'
+          if [[ '${{ inputs.PRE_RELEASE }}' == 'true' ]]; then
+            echo "PRE_RELEASE='--prerelease'" >> $GITHUB_ENV
           fi
-          DRAFT=''
-          if [[ ${{ inputs.DRAFT }} == 'true' ]]; then
-            DRAFT='--draft'
+          if [[ '${{ inputs.DRAFT }}' == 'true' ]]; then
+            echo "DRAFT='--draft'" >> $GITHUB_ENV
           fi
-          LATEST='--latest'
-          if [[ ${{ inputs.LATEST }} == 'false' ]]; then
-            LATEST='--latest=false'
+          if [[ '${{ inputs.LATEST }}' == 'false' ]]; then
+            echo "LATEST='--latest=false'" >> $GITHUB_ENV
           fi
-          if [[ ${{ inputs.ONLY_TAG }} == 'true' ]]; then
+          if [[ '${{ inputs.ONLY_TAG }}' == 'true' ]]; then
             git tag ${{ inputs.TAG }}
             git push origin ${{ inputs.TAG }}
           else
@@ -68,8 +65,9 @@ jobs:
           fi
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          OWNER: ${{ github.repository_owner }}
-          REPO: ${{ github.event.repository.name }}
+          LATEST: '--latest'
+          DRAFT: ''
+          PRE_RELEASE: ''
       - uses: 8398a7/action-slack@v3
         with:
           status: ${{ job.status }}
