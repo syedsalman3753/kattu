@@ -64,8 +64,9 @@ jobs:
           if [[ ${{ inputs.ONLY_TAG }} == 'true' ]]; then
             git tag ${{ inputs.TAG }}
             git push origin ${{ inputs.TAG }}
+          else
+            gh release create ${{ inputs.TAG }} $LATEST --target=${{ inputs.BRANCH }}   --title "${{ inputs.TAG }}" --notes "${{ inputs.BODY }}" $PRE_RELEASE $DRAFT
           fi
-          gh release create ${{ inputs.TAG }} $LATEST --target=${{ inputs.BRANCH }}   --title "${{ inputs.TAG }}" --notes "${{ inputs.BODY }}" $PRE_RELEASE $DRAFT
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           OWNER: ${{ github.repository_owner }}
