@@ -66,6 +66,7 @@ jobs:
             gh release create ${{ inputs.TAG }} ${{ env.LATEST }} --target=${{ inputs.BRANCH }}   --title "${{ inputs.TAG }}" --notes "${{ inputs.BODY }}" ${{ env.PRE_RELEASE }} ${{ env.DRAFT }}
           fi
         env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GH_TOKEN: ${{ secrets.TOKEN }}
           LATEST: '--latest'
           DRAFT: ''
