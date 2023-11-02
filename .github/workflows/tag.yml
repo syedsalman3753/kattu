@@ -63,7 +63,7 @@ jobs:
           fi
           if [[ '${{ inputs.ONLY_TAG }}' == 'true' ]]; then
             git tag ${{ inputs.TAG }}
-            git push origin ${{ inputs.TAG }} --follow-tags
+            git push origin ${{ inputs.TAG }}
           else
             gh release create ${{ inputs.TAG }} ${{ env.LATEST }} --target=${{ inputs.BRANCH }}   --title "${{ inputs.TAG }}" --notes "${{ inputs.BODY }}" ${{ env.PRE_RELEASE }} ${{ env.DRAFT }}
           fi
