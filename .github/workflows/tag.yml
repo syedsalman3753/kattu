@@ -61,7 +61,6 @@ jobs:
             git tag ${{ inputs.TAG }}
             git push origin ${{ inputs.TAG }}
           else
-            gh auth login 
             gh release create ${{ inputs.TAG }} ${{ env.LATEST }} --target=${{ inputs.BRANCH }}   --title "${{ inputs.TAG }}" --notes "${{ inputs.BODY }}" ${{ env.PRE_RELEASE }} ${{ env.DRAFT }}
           fi
         env:
