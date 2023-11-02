@@ -49,18 +49,18 @@ jobs:
       - name: Create a release with a tag
         run: |
           PRE_RELEASE=''
-          if [[ "${{ inputs.PRE_RELEASE }}" == 'true ]]; then
+          if [[ ${{ inputs.PRE_RELEASE }} == 'true' ]]; then
             PRE_RELEASE='--prerelease'
           fi
           DRAFT=''
-          if [[ "${{ inputs.DRAFT }}" == 'true' ]]; then
+          if [[ ${{ inputs.DRAFT }} == 'true' ]]; then
             DRAFT='--draft'
           fi
           LATEST='--latest'
-          if [[ "${{ inputs.LATEST }}" == 'false' ]]; then
+          if [[ ${{ inputs.LATEST }} == 'false' ]]; then
             LATEST='--latest=false'
           fi
-          if [[ "${{ inputs.ONLY_TAG }}" == 'true' ]]; then
+          if [[ ${{ inputs.ONLY_TAG }} == 'true' ]]; then
             git tag ${{ inputs.TAG }}
             git push origin ${{ inputs.TAG }}
           else
