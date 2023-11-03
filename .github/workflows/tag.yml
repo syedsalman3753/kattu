@@ -70,9 +70,6 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GH_TOKEN: ${{ secrets.TOKEN }}
-          LATEST: '--latest'
-          DRAFT: ''
-          PRE_RELEASE: ''
       - uses: 8398a7/action-slack@v3
         with:
           status: ${{ job.status }}
