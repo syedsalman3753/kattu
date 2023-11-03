@@ -53,13 +53,13 @@ jobs:
       - name: Set env vars
         run: |
           if [[ '${{ inputs.PRE_RELEASE }}' == 'true' ]]; then
-            echo "PRE_RELEASE='--prerelease'" >> $GITHUB_ENV
+            echo "PRE_RELEASE=--prerelease" >> $GITHUB_ENV
           fi
           if [[ '${{ inputs.DRAFT }}' == 'true' ]]; then
-            echo "DRAFT='--draft'" >> $GITHUB_ENV
+            echo "DRAFT=--draft" >> $GITHUB_ENV
           fi
           if [[ '${{ inputs.LATEST }}' == 'false' ]]; then
-            echo "LATEST='--latest=false'" >> $GITHUB_ENV
+            echo "LATEST=--latest=false" >> $GITHUB_ENV
           fi
       - name: Create a release / tag
         run: |
