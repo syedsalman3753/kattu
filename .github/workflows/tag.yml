@@ -61,12 +61,14 @@ jobs:
           if [[ '${{ inputs.LATEST }}' == 'false' ]]; then
             echo "LATEST='--latest=false'" >> $GITHUB_ENV
           fi
+      - name: dd
+        run: |
           if [[ '${{ inputs.ONLY_TAG }}' == 'true' ]]; then
-            git tag ${{ inputs.TAG }}
-            git push origin ${{ inputs.TAG }}
-          else
-            gh release create ${{ inputs.TAG }} ${{ env.LATEST }} --target=${{ inputs.BRANCH }}   --title "${{ inputs.TAG }}" --notes "${{ inputs.BODY }}" ${{ env.PRE_RELEASE }} ${{ env.DRAFT }}
-          fi
+              git tag ${{ inputs.TAG }}
+              git push origin ${{ inputs.TAG }}
+            else
+              gh release create ${{ inputs.TAG }} ${{ env.LATEST }} --target=${{ inputs.BRANCH }}   --title "${{ inputs.TAG }}" --notes "${{ inputs.BODY }}" ${{ env.PRE_RELEASE }} ${{ env.DRAFT }}
+            fi
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GH_TOKEN: ${{ secrets.TOKEN }}
