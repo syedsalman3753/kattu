@@ -1,0 +1,40 @@
+name: Release from CSV
+on:
+  workflow_call:
+    inputs:
+      CSV_FILE:
+        description: path of csv file
+        required: false
+        type: string
+        value: ./repolist.csv
+    secrets:
+      SLACK_WEBHOOK_URL:
+        required: true
+      TOKEN:
+        required: true
+
+jobs:
+  create-releases-from-csv:
+    name: Create Releases from CSV
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Create Releases from CSV
+        run: |
+          cat ${{ inputs.CSV_FILE }} | awk -F ',' 'NR>1{print "{\"REPO\":\"" $1 "\",\"TAG\":\"" $2 "\",\"ONLY_TAG\":\"" $3 "\",\"BRANCH\":\"" $4 "\",\"LATEST\":\"" $5 "\",\"BODY\":\"" $6 "\",\"PRE_RELEASE\":\"" $7 "\",\"DRAFT\":\"" $8 "\"}"}' | while read -r data; do
+            curl -L \
+              -X POST \
+              -H "Accept: application/vnd.github+json" \
+              -H "Authorization: Bearer ${{ secrets.TOKEN }}" \
+              -H "X-GitHub-Api-Version: 2022-11-28" \
+              https://api.github.com/repos/mosip/${REPO}/releases \
+              -d "$data"
+          done
+      - uses: 8398a7/action-slack@v3
+        with:
+          status: ${{ job.status }}
+          fields: repo,message,author,commit,workflow,job # selectable (default: repo,message)
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }} # required
+        if: failure() # Pick up events even if the job fails or is canceled.
