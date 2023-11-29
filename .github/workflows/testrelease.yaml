@@ -6,7 +6,7 @@ on:
         description: path of csv file
         required: false
         type: string
-        value: ./repolist.csv
+        default: ./repolist.csv
     secrets:
       SLACK_WEBHOOK_URL:
         required: true
