@@ -30,7 +30,9 @@ jobs:
               -H "X-GitHub-Api-Version: 2022-11-28" \
               https://api.github.com/repos/shubham17998/${REPO}/releases \
               -d "$data"
-          done
+            done
+          echo "Data to be sent to GitHub API: "
+          echo "$data"  
       - uses: 8398a7/action-slack@v3
         with:
           status: ${{ job.status }}
