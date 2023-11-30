@@ -25,7 +25,6 @@ jobs:
       - name: Create Releases from CSV
         run: |
           cat ${{ inputs.CSV_FILE }} | awk -F ',' 'NR>1{print "{\"REPO\":\"" $1 "\",\"TAG\":\"" $2 "\",\"ONLY_TAG\":\"" $3 "\",\"BRANCH\":\"" $4 "\",\"LATEST\":\"" $5 "\",\"BODY\":\"" $6 "\",\"PRE_RELEASE\":\"" $7 "\",\"DRAFT\":\"" $8 "\"}"}' | while read -r data;do
-            REPO=$(echo "$data" | jq -r '.REPO')
             echo "Request Payload: $data"
             curl -L \
               -X POST \
