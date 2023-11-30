@@ -24,7 +24,7 @@ jobs:
         run: sudo snap install yq
       - name: Create Releases from CSV
         run: |
-          repos=$(yq repolist.csv -p=csv -o=json | yq -r '.[].REPO')
+          repos=$(yq ${{ inputs.CSV_FILE }} -p=csv -o=json | yq -r '.[].REPO')
 
           for repo in $repos; do
             curl -L \
