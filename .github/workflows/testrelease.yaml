@@ -22,10 +22,7 @@ jobs:
         uses: actions/checkout@v3
       - name: Create Releases from CSV
         run: |
-          cat ${{ inputs.CSV_FILE }} | awk -F ',' 'NR>1{print "{\"REPO\":\"" $1 "\",\"TAG\":\"" $2 "\",\"ONLY_TAG\":\"" $3 "\",\"BRANCH\":\"" $4 "\",\"LATEST\":\"" $5 "\",\"BODY\":\"" $6 "\",\"PRE_RELEASE\":\"" $7 "\",\"DRAFT\":\"" $8 "\"}"}' | while read -r data;
-          echo "Data to be sent to GitHub API:"
-          echo "$data"
-          do
+          cat ${{ inputs.CSV_FILE }} | awk -F ',' 'NR>1{print "{\"REPO\":\"" $1 "\",\"TAG\":\"" $2 "\",\"ONLY_TAG\":\"" $3 "\",\"BRANCH\":\"" $4 "\",\"LATEST\":\"" $5 "\",\"BODY\":\"" $6 "\",\"PRE_RELEASE\":\"" $7 "\",\"DRAFT\":\"" $8 "\"}"}' | while read -r data;do
             curl -L \
               -X POST \
               -H "Accept: application/vnd.github+json" \
