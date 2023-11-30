@@ -32,7 +32,7 @@ jobs:
               -d "$data"
             done
           echo "Data to be sent to GitHub API: "
-          echo "$data"  
+          echo $data  
       - uses: 8398a7/action-slack@v3
         with:
           status: ${{ job.status }}
