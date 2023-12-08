@@ -47,6 +47,10 @@ jobs:
               \"draft\": $DRAFT,
               \"prerelease\": $PRE_RELEASE
             }"
+
+            # Debugging output
+            echo "DEBUG: Data payload:"
+            echo "$data"
             
             curl -L \
               -X POST \
