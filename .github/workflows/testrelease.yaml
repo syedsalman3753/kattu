@@ -40,12 +40,12 @@ jobs:
             
             # Construct data payload
             data="{
-              \"tag_name\": \"$TAG\",
-              \"name\": \"$TAG\",
-              \"target_commitish\": \"$BRANCH\",
-              \"body\": \"$BODY\",
-              \"draft\": \"$DRAFT\",
-              \"prerelease\": \"$PRE_RELEASE\"
+              \"tag_name\": $TAG,
+              \"name\": $TAG,
+              \"target_commitish\": $BRANCH,
+              \"body\": $BODY,
+              \"draft\": $DRAFT,
+              \"prerelease\": $PRE_RELEASE
             }"
 
             # Debugging output
