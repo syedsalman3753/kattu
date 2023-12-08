@@ -27,15 +27,16 @@ jobs:
               echo "CSV header line ignoring";
               continue;
             fi
+            
            # Output key-value pairs
             echo "REPO: $REPO"
             echo "TAG: $TAG"
-            echo "ONLY_TAG: $ONLY_TAG"
+            echo "ONLY_TAG: $(boolean $ONLY_TAG)" 
             echo "BRANCH: $BRANCH"
-            echo "LATEST: $LATEST"
-            echo "BODY: $BODY"
-            echo "PRE_RELEASE: $PRE_RELEASE"
-            echo "DRAFT: $DRAFT"
+            echo "LATEST: $(boolean $LATEST)"
+            echo "BODY: $(boolean $BODY)"
+            echo "PRE_RELEASE: $(boolean $PRE_RELEASE)"
+            echo "DRAFT: $(boolean $DRAFT)"
             echo "-----------------------------"
             
             # Construct data payload
