@@ -48,6 +48,9 @@ jobs:
               \"prerelease\": $PRE_RELEASE
             }"
 
+            # Remove extra double quotes around tag_name and name
+            data=$(echo "$data" | sed 's/""/"/g')
+
             # Debugging output
             echo "DEBUG: Data payload:"
             echo "$data"
