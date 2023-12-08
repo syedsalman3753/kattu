@@ -38,13 +38,9 @@ jobs:
             echo "DRAFT: $DRAFT"
             echo "-----------------------------"
 
-            # Convert 'false' and 'true' strings to boolean values
+            # Convert 'false' and 'true' strings to lowercase
             DRAFT=$(echo "$DRAFT" | tr '[:upper:]' '[:lower:]') # convert to lowercase
             PRERELEASE=$(echo "$PRE_RELEASE" | tr '[:upper:]' '[:lower:]') # convert to lowercase
-
-            # Convert boolean values to actual boolean values
-            DRAFT=$(echo "$DRAFT" | sed 's/true/true/' | sed 's/false/false/')
-            PRERELEASE=$(echo "$PRERELEASE" | sed 's/true/true/' | sed 's/false/false/')
             
             # Construct data payload
             data="{
