@@ -20,6 +20,10 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
+      - name: install boolean
+        run: |
+          sudo apt update -y
+          sudo apt-get -y install python3-boolean
       - name: Create Releases from CSV
         run: |
           while IFS=, read -r REPO TAG ONLY_TAG BRANCH LATEST BODY PRE_RELEASE DRAFT; do
