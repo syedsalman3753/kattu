@@ -44,15 +44,15 @@ jobs:
             echo "-----------------------------"
             
             # Construct data payload
-            data="{
-              \"tag_name\": $TAG,
-              \"name\": $TAG,
-              \"target_commitish\": $BRANCH,
-              \"body\": $BODY,
-              \"draft\": $(boolean $DRAFT),
-              \"make_latest": $(boolean $LATEST),
-              \"prerelease\": $(boolean $PRE_RELEASE)
-            }"
+            data='{
+              "tag_name": '$TAG',
+              "name": '$TAG',
+              "target_commitish": '$BRANCH',
+              "body": '$BODY',
+              "draft": '$(boolean $DRAFT)',
+              "make_latest": '$(boolean $LATEST)',
+              "prerelease": '$(boolean $PRE_RELEASE)'
+            }'
 
             # Debugging output
             echo "DEBUG: Data payload:"
