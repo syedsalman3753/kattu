@@ -37,6 +37,10 @@ jobs:
             echo "PRE_RELEASE: $PRE_RELEASE"
             echo "DRAFT: $DRAFT"
             echo "-----------------------------"
+
+            # Convert 'false' and 'true' strings to boolean values
+            DRAFT=$(echo "$DRAFT" | tr '[:upper:]' '[:lower:]') # convert to lowercase
+            PRERELEASE=$(echo "$PRE_RELEASE" | tr '[:upper:]' '[:lower:]') # convert to lowercase
             
             # Construct data payload
             data="{
