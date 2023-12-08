@@ -37,6 +37,17 @@ jobs:
             echo "PRE_RELEASE: $PRE_RELEASE"
             echo "DRAFT: $DRAFT"
             echo "-----------------------------"
+            
+            # Construct data payload
+            data="{
+              \"tag_name\": \"$TAG\",
+              \"name\": \"$TAG\",
+              \"target_commitish\": \"$BRANCH\",
+              \"body\": \"$BODY\",
+              \"draft\": $DRAFT,
+              \"prerelease\": $PRE_RELEASE
+            }"
+            
             curl -L \
               -X POST \
               -H "Accept: application/vnd.github+json" \
