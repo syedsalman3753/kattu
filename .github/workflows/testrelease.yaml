@@ -48,12 +48,9 @@ jobs:
               \"name\": \"$TAG\",
               \"target_commitish\": \"$BRANCH\",
               \"body\": \"$BODY\",
-              \"draft\": $DRAFT,
-              \"prerelease\": $PRE_RELEASE
+              \"draft\": \"$DRAFT\",
+              \"prerelease\": \"$PRE_RELEASE\"
             }"
-
-            # Remove extra double quotes around tag_name and name
-            data=$(echo "$data" | sed 's/""/"/g')
 
             # Debugging output
             echo "DEBUG: Data payload:"
