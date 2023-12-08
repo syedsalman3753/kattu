@@ -38,7 +38,7 @@ jobs:
             echo "ONLY_TAG: $(boolean $ONLY_TAG)" 
             echo "BRANCH: $BRANCH"
             echo "LATEST: $(boolean $LATEST)"
-            echo "BODY: $(boolean $BODY)"
+            echo "BODY: $BODY"
             echo "PRE_RELEASE: $(boolean $PRE_RELEASE)"
             echo "DRAFT: $(boolean $DRAFT)"
             echo "-----------------------------"
@@ -49,8 +49,9 @@ jobs:
               \"name\": $TAG,
               \"target_commitish\": $BRANCH,
               \"body\": $BODY,
-              \"draft\": $DRAFT,
-              \"prerelease\": $PRE_RELEASE
+              \"draft\": $(boolean $DRAFT),
+              \"make_latest": $(boolean $LATEST),
+              \"prerelease\": $(boolean $PRE_RELEASE)
             }"
 
             # Debugging output
