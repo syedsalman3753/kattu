@@ -4,7 +4,7 @@ on:
   workflow_call:
     inputs:
       REPO_URL:
-        description: 'Triggered for release or pe-release'
+        description: '<github-account-name>/<repo-name>'
         required: true
         type: string
       REPO_BRANCH:
