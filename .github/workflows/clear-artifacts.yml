@@ -5,7 +5,7 @@ on:
       ACCESS_TOKEN:
         required: true
       SLACK_WEBHOOK_URL:
-        required: true
+        required: false
 
 jobs:
   delete-artifacts:
@@ -20,5 +20,5 @@ jobs:
           status: ${{ job.status }}
           fields: repo,message,author,commit,workflow,job # selectable (default: repo,message)
         env:
-          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }} # required
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_DEVOPS }} # required
         if: failure() # Pick up events even if the job fails or is canceled.
