@@ -82,7 +82,7 @@ jobs:
         if: "${{ github.event_name != 'pull_request' }}"
 
       - name: Validate / Publish Helm charts
-        uses: syedsalman3753/helm-gh-pages@master
+        uses: syedsalman3753/syed-helm-gh-pages@master
         with:
           token: "${{ secrets.TOKEN }}"
           charts_dir: "${{ inputs.CHARTS_DIR }}"
