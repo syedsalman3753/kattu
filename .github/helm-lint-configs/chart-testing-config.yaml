@@ -7,5 +7,5 @@ chart-yaml-schema: ./chart-schema.yaml
 chart-repos:
   - bitnami=https://charts.bitnami.com/bitnami
   - confluentinc=https://confluentinc.github.io/cp-helm-charts/
-  - tf-nira=https://tf-nira.github.io/mosip-helm-nira
+  - tfnira=https://tf-nira.github.io/mosip-helm-nira
 
