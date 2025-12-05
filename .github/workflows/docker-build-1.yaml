@@ -50,7 +50,7 @@ jobs:
         run: |
           # Strip git ref prefix from version
           echo "BRANCH_NAME=$(echo ${{ github.ref }} | sed -e 's,.*/\(.*\),\1,')" >> $GITHUB_ENV
-          echo "DOCKER_IMAGE_NAME=${{env.NAMESPACE}}/${{ env.SERVICE_NAME }}:${{env.BRANCH_NAME}}" >> $GITHUB_ENV
+          echo "DOCKER_IMAGE_NAME=${{env.NAMESPACE}}/${{ env.SERVICE_NAME }}:$(echo ${{ github.ref }} | sed -e 's,.*/\(.*\),\1,')" >> $GITHUB_ENV
 
       - name: Get current date
         run: echo "BUILD_TIME=$(date +'%Y-%m-%d-%H-%M-%S')"  >> $GITHUB_ENV
