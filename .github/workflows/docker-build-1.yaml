@@ -38,7 +38,8 @@ jobs:
           path: ./
 
       - name: Install docker-squash
-        
+        run: pip install docker-squash
+
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
 
